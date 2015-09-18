@@ -2,7 +2,6 @@
 		controllerName="app0.app0" xmlns:html="http://www.w3.org/1999/xhtml">
 	<Page title="Title">
 		<content>
-	
 		</content>
 	</Page>
 </core:View>
