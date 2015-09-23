@@ -8,7 +8,36 @@ sap.ui.define([
    "use strict";
    return UIComponent.extend("sap.ui.demo.wt.Component", {
 	  metadata : {
-	            manifest: "json"
+	            manifest: "json",
+	        	routing: {
+	        		  config: {
+	        			routerClass: "sap.m.routing.Router",
+	        			viewType: "XML",
+	        			viewPath: "sap.ui.demo.wt.view",
+	        			controlId: "app",
+	        			controlAggregation: "pages"
+	        		  },
+	        		  routes: [
+	        			{
+	        			  pattern: "",
+	        			  name: "overview",
+	        			  target: "overview"
+	        			},
+	        			{
+	        			  pattern: "detail",
+	        			  name: "detail",
+	        			  target: "detail"
+	        			}
+	        		  ],
+	        		  targets: {
+	        			overview: {
+	        			  viewName: "Overview"
+	        			},
+	        			detail: {
+	        			  viewName: "Detail"
+	        			}
+	        		  }
+	        		}
 	      },
       init : function () {
          // call the init function of the parent
@@ -32,7 +61,7 @@ sap.ui.define([
          var sNamespace=this.getMetadata().getManifestEntry("sap.app").id;
          var oInvoiceModel=new JSONModel(jQuery.sap.getModulePath(sNamespace,oConfig.invoiceLocal));
          this.setModel(oInvoiceModel,"invoice");
-////         set invoice model-remote
+//         set invoice model-remote
 //         var oConfig=this.getMetadata().getConfig();
 //         var oInvoiceModel=new ODataModel(oConfig.invoiceRemote);
 //         console.log(oConfig.invoiceRemote);
@@ -40,7 +69,7 @@ sap.ui.define([
 //         this.setModel(oInvoiceModel,"invoice")
 //		 // disable batch grouping for v2 API of the northwind service
 //			this.getModel("invoice").setUseBatch(false);
-         // set dialog
+//          set dialog
 	     this.helloDialog = new HelloDialog();
 		// create the views based on the url/hash
 		this.getRouter().initialize();

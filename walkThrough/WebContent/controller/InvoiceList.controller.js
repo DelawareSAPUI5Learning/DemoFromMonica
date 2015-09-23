@@ -6,7 +6,14 @@ sap.ui.define([
     	"sap/ui/model/FilterOperator"
 ],function(Controller,JSONModel,formatter, Filter, FilterOperator){
 	"use strict";
+	
 	return Controller.extend("sap.ui.demo.wt.controller.InvoiceList",{
+		
+		onPress: function (oEvent) {
+			console.log(111111);
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("Detail");
+		},
 		formatter: formatter,
 		onInit:function(){
 			var oViewModel = new JSONModel({
@@ -26,10 +33,6 @@ sap.ui.define([
 			var oList=this.getView().byId("invoiceList");
 			var oBinding=oList.getBinding("items");
 			oBinding.filter(aFilter);
-		},
-		onPress: function (oEvent) {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("Detail");
 		}
 	});
 });
