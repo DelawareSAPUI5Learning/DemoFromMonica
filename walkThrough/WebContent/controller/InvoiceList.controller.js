@@ -10,9 +10,13 @@ sap.ui.define([
 	return Controller.extend("sap.ui.demo.wt.controller.InvoiceList",{
 		
 		onPress: function (oEvent) {
-			console.log(111111);
+			var oItem = oEvent.getSource();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("Detail");
+			console.log('111222');
+			console.log(oItem);
+			oRouter.navTo("detail",{
+				invoicePath: oItem.getBindingContext("invoice").getPath().substr(1)
+			});
 		},
 		formatter: formatter,
 		onInit:function(){
